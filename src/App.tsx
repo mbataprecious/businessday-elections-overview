@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, useRoutes } from "react-router";
+import DataLayer from "./components/DataLayer";
+import NoMatch from "./pages/404page";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {useRoutes([
+        {
+          path: "",
+          element: <Home />,
+          children: [
+            {
+              path: "",
+              element: <Navigate to="/governor/2019" replace />,
+            },
+            {
+              path: ":title/:year",
+              element: <DataLayer />,
+            },
+            {
+              path: "*",
+              element: <NoMatch />,
+            },
+          ],
+        },
+      ])}
+    </>
   );
 }
 
