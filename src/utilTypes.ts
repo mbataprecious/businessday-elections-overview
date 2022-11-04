@@ -47,7 +47,7 @@ export type party =
   | "UPN"
   | "UPP";
 
-type ElectionDataType = { [Key: number]: ElectionDataType };
+export type ElectionDataType = { [Key: number]: ElectionDataType };
 
 export type ElectionYearType = {
   governor: {
