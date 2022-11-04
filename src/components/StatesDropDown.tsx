@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { currentParamRoute, regionStates } from "../utils";
 import { useLocation } from "react-router-dom";
-
-type RegionStateType = typeof regionStates;
+import type { RegionStateType } from "../utilTypes";
 
 type Props = { className?: string };
 

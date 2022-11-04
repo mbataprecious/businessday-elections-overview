@@ -2,6 +2,7 @@ import { Navigate, useRoutes } from "react-router";
 import DataLayer from "./components/DataLayer";
 import NoMatch from "./pages/404page";
 import Home from "./pages/Home";
+import StateDataPage from "./pages/StateDataPage";
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
             {
               path: ":title/:year",
               element: <DataLayer />,
+            },
+            {
+              path: "/state/:stateCode/:title/:year",
+              element: <StateDataPage />,
             },
             {
               path: "*",
