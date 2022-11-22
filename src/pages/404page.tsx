@@ -12,8 +12,8 @@ const defaultOptions = {
 };
 const NoMatch = () => {
   return (
-    <div>
-      <Lottie options={defaultOptions} height={400} width={400} />
+    <div className="mt-16">
+      <Lottie options={defaultOptions} height={400} />
     </div>
   );
 };

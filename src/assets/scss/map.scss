@@ -1,0 +1,23 @@
+.svg-map {
+  width: 100%;
+  height: auto;
+  stroke: #e2e2e2;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  &__location {
+    fill: #52ae60;
+    cursor: pointer;
+
+    &:focus,
+    &:hover {
+      opacity: 0.8;
+      outline: 0;
+    }
+
+    &[aria-checked="true"] {
+      fill: #f4bc44;
+    }
+  }
+}

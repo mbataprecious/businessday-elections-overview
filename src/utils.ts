@@ -1,4 +1,16 @@
 import { Location } from "react-router";
+import type { ElectionDataType } from "./utilTypes";
+import type { CandidateData } from "./utilTypes";
+
+export const fetchElectionData = async () => {
+  try {
+    let res = await fetch("/electionData.json");
+    console.log(res);
+    return (await res.json()) as ElectionDataType;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
 
 export const getParentPath = (location: Location): string => {
   let pathArray = location.pathname.split("/");
@@ -55,8 +67,8 @@ export const regionStates = {
     { name: "Bayelsa", code: "BY" },
     { name: "Cross River", code: "CR" },
     { name: "Delta", code: "DT" },
-    { name: "Edo", code: "AD" },
-    { name: "Rivers", code: "AD" },
+    { name: "Edo", code: "ED" },
+    { name: "Rivers", code: "RV" },
   ],
   SE: [
     { name: "Abia", code: "AB" },
@@ -65,6 +77,49 @@ export const regionStates = {
     { name: "Enugu", code: "EN" },
     { name: "Imo", code: "IM" },
   ],
+};
+
+export let statesArray = Object.values(regionStates).reduce(
+  (acc, regionStates) => {
+    return [...acc, ...regionStates];
+  },
+  []
+);
+
+export let stateIdMap = statesArray.reduce((acc, state) => {
+  let id =
+    state.name.toLowerCase() === "nasarawa"
+      ? "nassarawa"
+      : state.name.toLowerCase().replace(/\s/g, "-");
+  acc[id!] = { ...state, id: id };
+  return acc;
+}, {} as Record<string, { code: string; name: string; id: string }>);
+
+export let stateCodeMap = statesArray.reduce((acc, state) => {
+  let code = state.code;
+  acc[code!] = { ...state };
+  return acc;
+}, {} as Record<string, { code: string; name: string }>);
+console.log(stateCodeMap);
+
+export const getrandomBg = () => {
+  const bgArray = [
+    "bg-[#f6c601]",
+    "bg-[#f78500]",
+    "bg-[#ef446c]",
+    "bg-[#5c340f]",
+    "bg-[#3e3ef7]",
+  ];
+  const random = Math.floor(Math.random() * bgArray.length);
+  return bgArray[random];
+};
+
+const getBgStyle = (candidate: CandidateData) => {
+  return candidate.party === "APC"
+    ? "!bg-[#3d8850]"
+    : candidate.party === "PDP"
+    ? "!bg-[#0d4c87]"
+    : getrandomBg();
 };
 //
 //

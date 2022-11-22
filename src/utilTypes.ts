@@ -5,10 +5,10 @@ export type CandidateData = {
   candidate: string;
   constituency: string;
   is_incumbent: string;
-  party: "PDP";
+  party: party;
   race: string;
   region: keyof RegionStateType;
-  state: "AB";
+  state: string;
   total_votes: number;
   votes: number;
   won: "won" | "lost";
@@ -47,34 +47,16 @@ export type party =
   | "UPN"
   | "UPP";
 
-export type ElectionDataType = { [Key: number]: ElectionDataType };
+export type MapLocation = {
+  path: string;
+  id: string;
+  name: string;
+};
+
+export type ElectionDataType = { [Key: number]: ElectionYearType };
 
 export type ElectionYearType = {
-  governor: {
-    stateData: {
-      [Key: string]: CandidateData[];
-    };
-    summary: {
-      [Key in party]: summaryValue;
-    };
-  };
-  president: {
-    stateData: {
-      [Key: string]: CandidateData[];
-    };
-    summary: {
-      [Key in party]: summaryValue;
-    };
-  };
-  senate: {
-    stateData: {
-      [Key: string]: CandidateData[];
-    };
-    summary: {
-      [Key in party]: summaryValue;
-    };
-  };
-  house: {
+  [Key: string]: {
     stateData: {
       [Key: string]: CandidateData[];
     };

@@ -9,13 +9,19 @@ import { BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const ControlSection = () => {
   const [open, setOpen] = useState(false);
+  const [headertitleMap] = useState({
+    house: "House of Representatives",
+    senate: "Senatorial",
+    governor: "Governorship",
+    president: "Presidential",
+  });
   const params = useParams();
   const location = useLocation();
   const matchState = useMatch("/state/*");
-  console.log("this is the match state ", matchState);
+  // console.log("this is the match state ", matchState);
   const parentPathForYear = getParentPath(location);
-  console.log("this is the location", location);
-  console.log("this is the params", params);
+  // console.log("this is the location", location);
+  // console.log("this is the params", params);
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     "w-full py-1 border border-gray-600 text-center " +
@@ -36,7 +42,9 @@ const ControlSection = () => {
           </li>
         </ul>
         <h3 className="text-red-500 text-2xl mt-4">
-          Governorship Election Results
+          {`${
+            headertitleMap[params.title! as keyof typeof headertitleMap]
+          } Election Results`}
         </h3>
         <div className="flex md:flex-row md:justify-between flex-col ">
           <ul className="mt-6 flex justify-start items-center md:w-2/4">

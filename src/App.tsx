@@ -2,6 +2,7 @@ import { Navigate, useRoutes } from "react-router";
 import DataLayer from "./components/DataLayer";
 import NoMatch from "./pages/404page";
 import Home from "./pages/Home";
+import MapPage from "./pages/MapPage";
 import StateDataPage from "./pages/StateDataPage";
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
             },
             {
               path: ":title/:year",
-              element: <DataLayer />,
+              element: <MapPage />,
             },
             {
               path: "/state/:stateCode/:title/:year",
