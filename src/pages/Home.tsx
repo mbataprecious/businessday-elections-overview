@@ -1,15 +1,11 @@
-import { Outlet } from "react-router";
-import ControlSection from "../components/ControlSection";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/landing/header";
+import IntroSection from "../components/landing/IntroSection";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <ControlSection />
-      <Outlet />
-      <Footer />
+      <IntroSection />
     </>
   );
 };

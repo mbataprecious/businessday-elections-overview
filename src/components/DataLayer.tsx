@@ -1,13 +1,12 @@
 import { useMemo, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { useFetchElectionData } from "../customHooks/useFetchElectionData";
 import type { CandidateData, party } from "../utilTypes";
 import numeral from "numeral";
 import Container from "./Container";
 import ColorDirection from "./ColorDirection";
+import { useElectionContext } from "../context/ElectionContext";
 
 const DataLayer = () => {
-  let { data } = useFetchElectionData();
+  const { data, year, title } = useElectionContext();
   const [totalSets] = useState({
     house: 360,
     senate: 109,
@@ -15,8 +14,6 @@ const DataLayer = () => {
     president: 37,
   });
   const [winningCandidates, setWinningCandidates] = useState<CandidateData[]>();
-  const params = useParams();
-  const location = useLocation();
   // console.log("this is winners", winningCandidates);
 
   let stats = useMemo(() => {
@@ -25,9 +22,8 @@ const DataLayer = () => {
       APC: 0,
       others: 0,
     };
-    if (params.year && params.title && data) {
-      let gernorshipStateData =
-        data[parseInt(params.year)][params.title!].stateData;
+    if (year && title && data) {
+      let gernorshipStateData = data[parseInt(year)][title!].stateData;
       for (const property in gernorshipStateData) {
         let stateWinningCandidates = gernorshipStateData[property].filter(
           (candidates) => {
@@ -54,13 +50,12 @@ const DataLayer = () => {
     }
 
     return mapCandidate;
-  }, [params, data]);
+  }, [title, year, data]);
 
   let totalSummaryVotes = useMemo(() => {
     let total = 0;
-    if (params.year && params.title && data) {
-      let totalVotersSummary =
-        data[parseInt(params.year)][params.title!].summary;
+    if (year && title && data) {
+      let totalVotersSummary = data[parseInt(year)][title!].summary;
       for (const property in totalVotersSummary) {
         total += Number(
           totalVotersSummary[property as keyof typeof totalVotersSummary].votes
@@ -68,22 +63,22 @@ const DataLayer = () => {
       }
     }
     return total;
-  }, [params, data]);
-  console.log("this is the totalVotersSummary", totalSummaryVotes);
-  console.log("this is the stats", stats);
+  }, [title, year, data]);
+  // console.log("this is the totalVotersSummary", totalSummaryVotes);
+  // console.log("this is the stats", stats);
 
   return (
     <div>
       <Container>
         {" "}
-        {!(params.title === "president") ? (
+        {!(title === "president") ? (
           <>
             <div className="progress flex mt-8">
               <div
                 style={{
                   width: `${
                     ((stats.PDP as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -98,7 +93,7 @@ const DataLayer = () => {
                 style={{
                   width: `${
                     ((stats.APC as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -113,7 +108,7 @@ const DataLayer = () => {
                 style={{
                   width: `${
                     ((stats.others as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -130,7 +125,7 @@ const DataLayer = () => {
                 style={{
                   width: `${
                     ((stats.PDP as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -140,7 +135,7 @@ const DataLayer = () => {
                 style={{
                   width: `${
                     ((stats.APC as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -150,7 +145,7 @@ const DataLayer = () => {
                 style={{
                   width: `${
                     ((stats.others as number) /
-                      totalSets[params.title as keyof typeof totalSets]) *
+                      totalSets[title as keyof typeof totalSets]) *
                     100
                   }%`,
                 }}
@@ -166,8 +161,7 @@ const DataLayer = () => {
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.PDP
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.PDP.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -179,8 +173,7 @@ const DataLayer = () => {
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.APC
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.APC.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -194,12 +187,10 @@ const DataLayer = () => {
                     width: `${
                       ((totalSummaryVotes -
                         (Number(
-                          data[parseInt(params.year!)][params.title!].summary
-                            .APC.votes
+                          data[parseInt(year!)][title!].summary.APC.votes
                         ) +
                           Number(
-                            data[parseInt(params.year!)][params.title!].summary
-                              .PDP.votes
+                            data[parseInt(year!)][title!].summary.PDP.votes
                           ))) /
                         totalSummaryVotes) *
                       100
@@ -216,8 +207,7 @@ const DataLayer = () => {
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.PDP
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.PDP.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -227,8 +217,7 @@ const DataLayer = () => {
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.APC
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.APC.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -240,12 +229,10 @@ const DataLayer = () => {
                     width: `${
                       ((totalSummaryVotes -
                         (Number(
-                          data[parseInt(params.year!)][params.title!].summary
-                            .APC.votes
+                          data[parseInt(year!)][title!].summary.APC.votes
                         ) +
                           Number(
-                            data[parseInt(params.year!)][params.title!].summary
-                              .PDP.votes
+                            data[parseInt(year!)][title!].summary.PDP.votes
                           ))) /
                         totalSummaryVotes) *
                       100
@@ -259,8 +246,7 @@ const DataLayer = () => {
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.PDP
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.PDP.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -269,23 +255,20 @@ const DataLayer = () => {
                 >
                   <p className=" text-center mt-4">
                     {`${numeral(
-                      (data[parseInt(params.year!)][params.title!].summary.PDP
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.PDP.votes /
                         totalSummaryVotes) *
                         100
                     ).format("00")}%`}
                     <br />
                     {`${numeral(
-                      data[parseInt(params.year!)][params.title!].summary.PDP
-                        .votes
+                      data[parseInt(year!)][title!].summary.PDP.votes
                     ).format("0,0")} votes`}
                   </p>
                 </div>
                 <div
                   style={{
                     width: `${
-                      (data[parseInt(params.year!)][params.title!].summary.APC
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.APC.votes /
                         totalSummaryVotes) *
                       100
                     }%`,
@@ -294,15 +277,13 @@ const DataLayer = () => {
                 >
                   <p className=" text-center mt-4">
                     {`${numeral(
-                      (data[parseInt(params.year!)][params.title!].summary.APC
-                        .votes /
+                      (data[parseInt(year!)][title!].summary.APC.votes /
                         totalSummaryVotes) *
                         100
                     ).format("00")}%`}
                     <br />
                     {`${numeral(
-                      data[parseInt(params.year!)][params.title!].summary.APC
-                        .votes
+                      data[parseInt(year!)][title!].summary.APC.votes
                     ).format("0,0")} votes`}
                   </p>
                 </div>

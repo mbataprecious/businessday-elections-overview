@@ -11,7 +11,7 @@ const ColorDirection = () => {
   return (
     <Container className="flex justify-center">
       <div className="w-full">
-        <div className="flex justify-between items-center max-w-[30rem] mx-auto mt-20">
+        <div className="flex justify-between items-center max-w-[30rem] mx-auto mt-10">
           {Object.keys(colorMap).map((party) => (
             <div key={party} className="flex items-center">
               <div

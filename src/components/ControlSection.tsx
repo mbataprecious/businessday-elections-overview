@@ -5,11 +5,11 @@ import { useParams, useLocation, useMatch } from "react-router-dom";
 import { appendGovernors, getParentPath } from "../utils";
 import StatesDropDown from "./StatesDropDown";
 import dayjs from "dayjs";
-import { BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const ControlSection = () => {
   const [open, setOpen] = useState(false);
   const [headertitleMap] = useState({
+    all: "All Race",
     house: "House of Representatives",
     senate: "Senatorial",
     governor: "Governorship",
@@ -111,19 +111,6 @@ const ControlSection = () => {
             Last updated: {dayjs().format("DD/MM/YYYY")},{"  "}
             {dayjs().format("hh:mm:ss a")}
           </p>
-          <div className="flex justify-between mt-5 border-2 border-dashed border-red-500 p-8 flex-wrap">
-            <h3 className="text-red-500 text-lg font-display font-bold">
-              Want more data on Nigeria?
-            </h3>
-            <div className="flex w-[4.5rem] justify-around">
-              <a href="http://">
-                <BsLinkedin className="text-red-500 w-[25px] h-[25px] md:w-[30px] md:h-[30px]" />
-              </a>
-              <a href="http://">
-                <BsTwitter className="text-red-500 w-[25px] h-[25px] md:w-[30px] md:h-[30px]" />
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </Container>

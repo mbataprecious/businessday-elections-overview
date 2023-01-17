@@ -6,6 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { ElectionProvider } from "./context/ElectionContext";
 
 export const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        <App />
+        <ElectionProvider>
+          <App />
+        </ElectionProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>

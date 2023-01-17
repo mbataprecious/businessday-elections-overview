@@ -11,7 +11,7 @@ const ListViewSection = () => {
   const params = useParams();
   let { year, title } = params;
   let { data } = useFetchElectionData();
-  console.log(candidatesList);
+  // console.log(candidatesList);
   useEffect(() => {
     console.log("this is running mounted");
     if (data) {
@@ -31,7 +31,7 @@ const ListViewSection = () => {
         );
         setCandidatesList(stateList);
       } else {
-        console.log("this is running false");
+        // console.log("this is running false");
         let constituentList = Object.values(titledDataStates).reduce(
           (acc, stateData) => {
             let listByContituency = stateData.reduce((acc2, candidate) => {

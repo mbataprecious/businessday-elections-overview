@@ -5,19 +5,16 @@ import { SVGMap } from "react-svg-map";
 import "../assets/scss/map.scss";
 import { CandidateData, MapLocation } from "../utilTypes";
 import { getrandomBg, stateIdMap } from "../utils";
-import { useParams } from "react-router";
-import { useFetchElectionData } from "../customHooks/useFetchElectionData";
 import GovtCard from "./GovtCard";
 import SenateCard from "./SenateCard";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material";
+import { useElectionContext } from "../context/ElectionContext";
 
 const MapView = () => {
-  let { data } = useFetchElectionData();
-  let theme = useTheme();
+  const { data, year, title } = useElectionContext();
   let match = useMediaQuery("(max-width:768px)");
+  //let navigate = useNavigate();
   // console.log("matches md up", match);
-  const params = useParams();
   const [hoverData, setHoverData] = useState<CandidateData[]>();
   const [mapState, setMapState] = useState<{
     pointedLocation: null | string;
@@ -38,7 +35,6 @@ const MapView = () => {
 
   function handleLocationMouseOver(event: any) {
     const pointedLocation = getLocationName(event) as string;
-    let { year, title } = params;
     let stateCode = stateIdMap[pointedLocation]?.code;
     //console.log("state map",stateCode)
     let titledDataStates = data![parseInt(year!)][title!].stateData;
@@ -81,7 +77,6 @@ const MapView = () => {
   }
 
   function getLocationClassName(location: MapLocation, index: number) {
-    let { year, title } = params;
     let stateCode = stateIdMap[location.id]?.code;
     //console.log("state map",stateCode)
     let titledDataStates = data![parseInt(year!)][title!].stateData;
@@ -110,15 +105,20 @@ const MapView = () => {
     return `svg-map__location`;
   }
 
-  // position: fixed;
-  // width: 200px;
-  // padding: 10px;
-  // border: 1px solid darkgray;
-  // background-color: white;
+  // function handleLocationClick(event: any) {
+  //   const pointedLocation = getLocationName(event) as string;
+  //   let { year, title } = params;
+  //   let stateCode = stateIdMap[pointedLocation]?.code;
+  //   //console.log("state map",stateCode)
+  //   let titledDataStates = data![parseInt(year!)][title!].stateData;
+  //   if (titledDataStates[stateCode]) {
+  //     navigate(`/state/${stateCode}/${title}/${year}`);
+  //   }
+  // }
 
   return (
     <Container>
-      <div className="relative max-w-4xl mx-auto pt-20">
+      <div className="relative max-w-3xl mx-auto pt-20">
         {!!data && (
           <>
             <SVGMap
@@ -127,10 +127,11 @@ const MapView = () => {
               onLocationMouseOver={handleLocationMouseOver}
               onLocationMouseOut={handleLocationMouseOut}
               onLocationMouseMove={handleLocationMouseMove}
+              // onLocationClick={handleLocationClick}
             />
 
             {!!hoverData ? (
-              params.title === "president" || params.title === "governor" ? (
+              title === "president" || title === "governor" ? (
                 <GovtCard
                   as="hover"
                   className={match ? "absolute bottom-[2%]" : "fixed"}

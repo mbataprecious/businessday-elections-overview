@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { getrandomBg, stateCodeMap } from "../utils";
+import { currentParamRoute } from "../utils";
+import { useLocation } from "react-router-dom";
 import type { CandidateData } from "../utilTypes";
 
 type Props = {
@@ -10,6 +12,8 @@ type Props = {
 };
 
 const SenateCard = ({ className, as, candidates, ...rest }: Props) => {
+  const location = useLocation();
+  const currentParamRoutePath = currentParamRoute(location);
   return (
     <div
       className={`${
@@ -29,7 +33,10 @@ const SenateCard = ({ className, as, candidates, ...rest }: Props) => {
         >
           <p>{!!candidates && stateCodeMap[candidates![0].state]?.name}</p>
           {as === "list" && (
-            <Link to={"/"} className=" hover:underline">
+            <Link
+              to={`/state/${candidates![0].state}/${currentParamRoutePath}`}
+              className=" hover:underline"
+            >
               See full state results
             </Link>
           )}

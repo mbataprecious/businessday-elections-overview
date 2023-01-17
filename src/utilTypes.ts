@@ -53,6 +53,8 @@ export type MapLocation = {
   name: string;
 };
 
+export type RaceType = "president" | "governor" | "house" | "senate";
+
 export type ElectionDataType = { [Key: number]: ElectionYearType };
 
 export type ElectionYearType = {
@@ -64,4 +66,9 @@ export type ElectionYearType = {
       [Key in party]: summaryValue;
     };
   };
+};
+
+export type SelectedLayer = {
+  state: any;
+  layer?: L.Polygon;
 };
