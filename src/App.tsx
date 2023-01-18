@@ -10,17 +10,15 @@ function App() {
         {
           path: "",
           element: <Home />,
-          children: [
-            {
-              path: "map",
-              element: <MapPage />,
-              children: [],
-            },
-            {
-              path: "*",
-              element: <NoMatch />,
-            },
-          ],
+        },
+        {
+          path: "map",
+          element: <MapPage />,
+          children: [],
+        },
+        {
+          path: "*",
+          element: <NoMatch />,
         },
       ])}
     </>

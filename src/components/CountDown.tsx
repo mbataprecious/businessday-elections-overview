@@ -3,8 +3,9 @@ import { useTimer } from "react-timer-hook";
 
 type Props = {
   expiryTimestamp: Date;
+  size?: "big" | "small";
 };
-const CountDown = ({ expiryTimestamp }: Props) => {
+const CountDown = ({ expiryTimestamp, size }: Props) => {
   const { seconds, minutes, hours, days, start } = useTimer({
     expiryTimestamp,
     onExpire: () => console.log("onExpire called"),
@@ -25,7 +26,7 @@ const CountDown = ({ expiryTimestamp }: Props) => {
             .map((x, i) => (
               <div
                 key={`day-${i}`}
-                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg w-9 m-[1px]"
+                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg w-16 m-[2px]"
               >
                 {x}
               </div>
@@ -44,7 +45,7 @@ const CountDown = ({ expiryTimestamp }: Props) => {
             .map((x, i) => (
               <div
                 key={`hrs-${i}`}
-                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-9 m-[1px]"
+                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-16 m-[2px]"
               >
                 {x}
               </div>
@@ -62,7 +63,7 @@ const CountDown = ({ expiryTimestamp }: Props) => {
             .map((x, i) => (
               <div
                 key={`min-${i}`}
-                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-9 m-[1px]"
+                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-16 m-[2px]"
               >
                 {x}
               </div>
@@ -80,7 +81,7 @@ const CountDown = ({ expiryTimestamp }: Props) => {
             .map((x, i) => (
               <div
                 key={`sec-${i}`}
-                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-9 m-[1px]"
+                className="bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-lg  w-16 m-[2px]"
               >
                 {x}
               </div>

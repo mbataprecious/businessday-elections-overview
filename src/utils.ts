@@ -1,6 +1,7 @@
 import { Location } from "react-router";
 import type { ElectionDataType, RaceType } from "./utilTypes";
 import type { CandidateData } from "./utilTypes";
+import L from "leaflet";
 //https://inecnigeria.org/wp-content/uploads/2018/10/ADC.jpg
 export const fetchElectionData = async () => {
   try {
