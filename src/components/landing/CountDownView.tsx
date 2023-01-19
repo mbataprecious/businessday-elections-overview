@@ -6,8 +6,11 @@ import CountDown from "../CountDown";
 const CountDownView = () => {
   return (
     <div>
-      <Container>
-        <div className=" flex justify-center items-center py-32 text-white">
+      <Container className="mt-24">
+        <h2 className="text-5xl font-semibold text-center max-w-lg mx-auto">
+          Count Down to 2023 Elections
+        </h2>
+        <div className=" flex justify-center items-center pt-9 pb-32 text-white">
           <CountDown
             expiryTimestamp={new Date(dayjs("2023-02-25").valueOf())}
             className=" bg-[#c62c2c]"
