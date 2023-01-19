@@ -7,9 +7,11 @@ const CountDownView = () => {
   return (
     <div>
       <Container>
-        <div className=" flex justify-center items-center py-32">
+        <div className=" flex justify-center items-center py-32 text-white">
           <CountDown
             expiryTimestamp={new Date(dayjs("2023-02-25").valueOf())}
+            className=" bg-[#c62c2c]"
+            textClassName=" text-gray-900"
           />
         </div>
       </Container>

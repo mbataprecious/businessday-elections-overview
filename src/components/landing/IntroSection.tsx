@@ -26,7 +26,7 @@ const incentives = [
 
 export default function IntroSection() {
   return (
-    <div className="bg-gray-900">
+    <div className="bg-black">
       <div className="mx-auto max-w-7xl py-10 sm:px-2 lg:px-4">
         <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
           <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-8 lg:grid-cols-3">
