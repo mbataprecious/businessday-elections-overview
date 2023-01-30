@@ -15,6 +15,7 @@ const CountDownView = () => {
             expiryTimestamp={new Date(dayjs("2023-02-25").valueOf())}
             className=" bg-[#c62c2c]"
             textClassName=" text-gray-900"
+            size="big"
           />
         </div>
       </Container>

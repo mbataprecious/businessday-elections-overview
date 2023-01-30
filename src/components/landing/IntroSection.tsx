@@ -44,7 +44,7 @@ export default function IntroSection() {
           </div>
           <div className="mt-16 flex justify-center">
             <Link
-              to="/"
+              to="/map"
               className="inline rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100 md:py-4 md:px-10 md:text-lg"
             >
               View Interactive Map

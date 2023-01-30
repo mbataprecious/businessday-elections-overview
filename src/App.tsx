@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router";
 import NoMatch from "./pages/404page";
 import Home from "./pages/Home";
+import MapFuture from "./pages/MapFuture";
 import MapPage from "./pages/MapPage";
 
 function App() {
@@ -14,6 +15,11 @@ function App() {
         {
           path: "map",
           element: <MapPage />,
+          children: [],
+        },
+        {
+          path: "map/future",
+          element: <MapFuture />,
           children: [],
         },
         {

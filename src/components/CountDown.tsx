@@ -25,7 +25,13 @@ const CountDown = ({
     <div className="flex items-center">
       <div className="flex flex-col">
         <p className={`text-center ${textClassName}`}>DAYS</p>
-        <div className={"flex h-[100px]"}>
+        <div
+          className={`flex ${
+            size === "big"
+              ? " h-[3.125rem] md:h-[6.25rem]"
+              : "  md:h-[3.125rem]"
+          }`}
+        >
           {days
             .toString()
             .padStart(2, "0")
@@ -33,7 +39,7 @@ const CountDown = ({
             .map((x, i) => (
               <div
                 key={`day-${i}`}
-                className={`bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-2xl w-16 m-[2px] flex justify-center items-center ${className}`}
+                className={`bg-[#011C2C] rounded-[5px] font-robotoMono text-lg sm:text-2xl md:text-6xl w-9 md:w-16 m-[2px] flex justify-center items-center ${className}`}
               >
                 {x}
               </div>
@@ -44,7 +50,13 @@ const CountDown = ({
       <span className="p-[4px] text-[#011C2C] font-bold translate-y-2">:</span>
       <div className="flex flex-col">
         <p className={`text-center ${textClassName}`}>HRS</p>
-        <div className={"flex h-[100px]"}>
+        <div
+          className={`flex ${
+            size === "big"
+              ? " h-[3.125rem] md:h-[6.25rem]"
+              : "  md:h-[3.125rem]"
+          }`}
+        >
           {hours
             .toString()
             .padStart(2, "0")
@@ -52,7 +64,7 @@ const CountDown = ({
             .map((x, i) => (
               <div
                 key={`hrs-${i}`}
-                className={`bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-2xl w-16 m-[2px] flex justify-center items-center ${className}`}
+                className={`bg-[#011C2C] rounded-[5px] font-robotoMono text-lg sm:text-2xl md:text-6xl w-9 md:w-16 m-[2px] flex justify-center items-center ${className}`}
               >
                 {x}
               </div>
@@ -62,7 +74,13 @@ const CountDown = ({
       <span className="p-[4px] text-[#011C2C] font-bold translate-y-2">:</span>
       <div className="flex flex-col">
         <p className={`text-center ${textClassName}`}>MINS</p>
-        <div className={"flex h-[100px]"}>
+        <div
+          className={`flex ${
+            size === "big"
+              ? " h-[3.125rem] md:h-[6.25rem]"
+              : "  md:h-[3.125rem]"
+          }`}
+        >
           {minutes
             .toString()
             .padStart(2, "0")
@@ -70,7 +88,7 @@ const CountDown = ({
             .map((x, i) => (
               <div
                 key={`min-${i}`}
-                className={`bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-2xl w-16 m-[2px] flex justify-center items-center ${className}`}
+                className={`bg-[#011C2C] rounded-[5px] font-robotoMono text-lg sm:text-2xl md:text-6xl w-9 md:w-16 m-[2px] flex justify-center items-center ${className}`}
               >
                 {x}
               </div>
@@ -80,7 +98,13 @@ const CountDown = ({
       <span className="p-[4px] text-[#011C2C] font-bold translate-y-2">:</span>
       <div className="flex flex-col">
         <p className={`text-center ${textClassName}`}>SECS</p>
-        <div className={"flex h-[100px]"}>
+        <div
+          className={`flex ${
+            size === "big"
+              ? " h-[3.125rem] md:h-[6.25rem]"
+              : "  md:h-[3.125rem]"
+          }`}
+        >
           {seconds
             .toString()
             .padStart(2, "0")
@@ -88,7 +112,7 @@ const CountDown = ({
             .map((x, i) => (
               <div
                 key={`sec-${i}`}
-                className={`bg-[#011C2C] p-3 rounded-[5px] font-robotoMono text-2xl w-16 m-[2px] flex justify-center items-center ${className}`}
+                className={`bg-[#011C2C] rounded-[5px] font-robotoMono text-lg sm:text-2xl md:text-6xl w-9 md:w-16 m-[2px] flex justify-center items-center ${className}`}
               >
                 {x}
               </div>

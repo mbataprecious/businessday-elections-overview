@@ -579,7 +579,7 @@
         "constituency": "FC/011/AD",
         "state": "AD",
         "is_unknown": false,
-        "name": "Mayo Belwa/Ganye/Jada/Toungo"
+        "name": "Jada/Ganye/Tonng/Mayo Belwa"
       },
       "geometry": {
         "type": "Polygon",
@@ -2396,7 +2396,7 @@
         "constituency": "FC/043/BA",
         "state": "BA",
         "is_unknown": false,
-        "name": "Darazo/Gunjuwa"
+        "name": "Darazo/Ganjuwa"
       },
       "geometry": {
         "type": "Polygon",
@@ -2740,7 +2740,7 @@
         "constituency": "FC/047/BA",
         "state": "BA",
         "is_unknown": false,
-        "name": "Jamaare/Itas-Gadau"
+        "name": "Jama’are/Itas-Gadau"
       },
       "geometry": {
         "type": "Polygon",
@@ -3248,7 +3248,7 @@
         "constituency": "FC/055/BN",
         "state": "BN",
         "is_unknown": false,
-        "name": "Ado/Obadigbo/Okpokwu"
+        "name": "Ado/Ogbadigbo/Okpokwu"
       },
       "geometry": {
         "type": "Polygon",
@@ -4196,7 +4196,7 @@
         "constituency": "FC/068/BO",
         "state": "BO",
         "is_unknown": false,
-        "name": "Biu/Bayo/Shani/Kwaya Kusar"
+        "name": "Biu/Kwaya-Kusar, Shani/Bayo"
       },
       "geometry": {
         "type": "Polygon",
@@ -4753,7 +4753,7 @@
         "constituency": "FC/073/BO",
         "state": "BO",
         "is_unknown": false,
-        "name": "Kukawa/Mobbar/Abadam/Guzamala"
+        "name": "Kukawa/Mobbar/Abadam/\nGuzamali"
       },
       "geometry": {
         "type": "Polygon",
@@ -4856,7 +4856,7 @@
         "constituency": "FC/074/BO",
         "state": "BO",
         "is_unknown": false,
-        "name": "Maiduguri/Metropolitan"
+        "name": "Maiduguri (Metropolitan)"
       },
       "geometry": {
         "type": "Polygon",
@@ -6163,7 +6163,7 @@
         "constituency": "FC/095/EB",
         "state": "EB",
         "is_unknown": false,
-        "name": "Abakaliki/Izzi"
+        "name": "Izzi/Abakaliki"
       },
       "geometry": {
         "type": "Polygon",
@@ -6346,7 +6346,7 @@
         "constituency": "FC/098/EB",
         "state": "EB",
         "is_unknown": false,
-        "name": "Ivo/Ohaozara/Onicha"
+        "name": "Ivo-Ohaozara/Onicha"
       },
       "geometry": {
         "type": "Polygon",
@@ -8632,7 +8632,7 @@
         "constituency": "FC/141/JG",
         "state": "JG",
         "is_unknown": false,
-        "name": "Birniwa/Guri/Kirikasamma"
+        "name": "Birniwa Guri/Kirikasamma"
       },
       "geometry": {
         "type": "Polygon",
@@ -9836,7 +9836,7 @@
         "constituency": "FC/159/KD",
         "state": "KD",
         "is_unknown": false,
-        "name": "Jemaa/Sanga"
+        "name": "Jema’a/Sanga"
       },
       "geometry": {
         "type": "Polygon",
@@ -10334,7 +10334,7 @@
         "constituency": "FC/166/KN",
         "state": "KN",
         "is_unknown": false,
-        "name": "Alabasu/Gaya/Ajingi"
+        "name": "Albasu/Gaya/Ajingi"
       },
       "geometry": {
         "type": "Polygon",
@@ -11120,7 +11120,7 @@
         "constituency": "FC/183/KN",
         "state": "KN",
         "is_unknown": false,
-        "name": "Kura/Madobi/Garun Malam"
+        "name": "Kura/Madobi/Garun Mallam"
       },
       "geometry": {
         "type": "Polygon",
@@ -11718,7 +11718,7 @@
         "constituency": "FC/194/KT",
         "state": "KT",
         "is_unknown": false,
-        "name": "Daura/Sandamu/Maiadua"
+        "name": "Daura/Sandamu/Mai’adua"
       },
       "geometry": {
         "type": "Polygon",
@@ -11765,7 +11765,7 @@
         "constituency": "FC/195/KT",
         "state": "KT",
         "is_unknown": false,
-        "name": "Dutsin-Ma/Kurfi"
+        "name": "Dutsinma/Kurfi"
       },
       "geometry": {
         "type": "Polygon",
@@ -12849,7 +12849,7 @@
         "constituency": "FC/211/KB",
         "state": "KB",
         "is_unknown": false,
-        "name": "Fakai/Sakaba/Wasagu/Danko/Zuru"
+        "name": "Fakai/Sakaba/Wasagu/Danko/ Zuru"
       },
       "geometry": {
         "type": "Polygon",
@@ -13259,7 +13259,7 @@
         "constituency": "FC/216/KG",
         "state": "KG",
         "is_unknown": false,
-        "name": "Idah/Igalamela Odolu/Ibaji/Ofu"
+        "name": "Idah/Igalamela Odolu/Ibaji/ Ofu"
       },
       "geometry": {
         "type": "Polygon",
@@ -13586,7 +13586,7 @@
         "constituency": "FC/221/KG",
         "state": "KG",
         "is_unknown": false,
-        "name": "Yagba East/Yagba West/Mopamuro"
+        "name": "Yagba East/Yagba West/ Mopamuro"
       },
       "geometry": {
         "type": "Polygon",
@@ -14631,7 +14631,7 @@
         "constituency": "FC/252/NW",
         "state": "NS",
         "is_unknown": false,
-        "name": "Akwanga/Nassarawa-Eggon/Wamba"
+        "name": "Akwanga/Nassarawa Eggon/ Wamba"
       },
       "geometry": {
         "type": "Polygon",
@@ -15428,7 +15428,7 @@
         "constituency": "FC/262/NG",
         "state": "NG",
         "is_unknown": false,
-        "name": "Gurara/Suleja/Tafa"
+        "name": "Gurara/Suleja/Tapa"
       },
       "geometry": {
         "type": "Polygon",
@@ -15708,7 +15708,7 @@
         "constituency": "FC/265/NG",
         "state": "NG",
         "is_unknown": false,
-        "name": "Kontagora/Wushishi/Mariga/Mashegu"
+        "name": "Kontagora/Wushishi/Mariga/ Mashegu"
       },
       "geometry": {
         "type": "Polygon",
@@ -18794,7 +18794,7 @@
         "constituency": "FC/315/PL",
         "state": "PL",
         "is_unknown": false,
-        "name": "Mikang/Quaan/Pan/Shedam"
+        "name": "Mikang/Qua’an/Pan/Shedam"
       },
       "geometry": {
         "type": "Polygon",

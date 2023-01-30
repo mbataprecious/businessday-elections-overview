@@ -12,11 +12,11 @@ const Navigation = () => {
         <h3 className=" font-display font-semibold text-lg">
           Explore Elections
         </h3>
-        <NavLink to={"past"} className={navClass}>
+        <NavLink to={"/map"} end className={navClass}>
           <BsPlus color="#FFFFFF" scale={1.5} />
           The Past
         </NavLink>
-        <NavLink to={"future"} className={navClass}>
+        <NavLink to={"/map/future"} end className={navClass}>
           The Future
           <BsPlus color="#FFFFFF" />
         </NavLink>

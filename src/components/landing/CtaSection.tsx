@@ -1,9 +1,13 @@
 /* This example requires Tailwind CSS v2.0+ */
+import election2 from "../../assets/images/election-img2.png";
+import election3 from "../../assets/images/election-img3.png";
+import election4 from "../../assets/images/election-img4.png";
+
 export default function CtaSection() {
   return (
     <div className="bg-white">
       <div className="overflow-hidden pt-32 sm:pt-14">
-        <div className="bg-gray-800">
+        <div className="bg-[#181716]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="relative pt-48 pb-16 sm:pb-24">
               <div>
@@ -11,13 +15,13 @@ export default function CtaSection() {
                   id="sale-heading"
                   className="text-4xl font-bold tracking-tight text-white md:text-5xl"
                 >
-                  Final Stock.
+                  Follow 2023
                   <br />
-                  Up to 50% off.
+                  Election Updates.
                 </h2>
                 <div className="mt-6 text-base">
                   <a href="#" className="font-semibold text-white">
-                    Shop the sale
+                    view updates
                     <span aria-hidden="true"> &rarr;</span>
                   </a>
                 </div>
@@ -29,7 +33,7 @@ export default function CtaSection() {
                     <div className="flex-shrink-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg"
+                        src={election2}
                         alt=""
                       />
                     </div>
@@ -37,7 +41,7 @@ export default function CtaSection() {
                     <div className="mt-6 flex-shrink-0 sm:mt-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
+                        src="https://www.channelstv.com/wp-content/uploads/2019/02/Nigeria-vote-1-1.jpg"
                         alt=""
                       />
                     </div>
@@ -46,7 +50,7 @@ export default function CtaSection() {
                     <div className="flex-shrink-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-01.jpg"
+                        src={election3}
                         alt=""
                       />
                     </div>
@@ -54,7 +58,7 @@ export default function CtaSection() {
                     <div className="mt-6 flex-shrink-0 sm:mt-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-02.jpg"
+                        src="https://www.channelstv.com/wp-content/uploads/2023/01/Officials-of-the-Independent-National-Electoral-Commission-INEC-sit-to-distribute-Permanent-Voter-Cards-to-prospective-voters-at-a-ward-in-Lagos-1.jpg"
                         alt=""
                       />
                     </div>
@@ -63,7 +67,7 @@ export default function CtaSection() {
                     <div className="flex-shrink-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-01.jpg"
+                        src={election4}
                         alt=""
                       />
                     </div>
@@ -71,7 +75,7 @@ export default function CtaSection() {
                     <div className="mt-6 flex-shrink-0 sm:mt-0">
                       <img
                         className="h-64 w-64 rounded-lg object-cover md:h-72 md:w-72"
-                        src="https://tailwindui.com/img/ecommerce-images/home-page-03-category-02.jpg"
+                        src={election2}
                         alt=""
                       />
                     </div>

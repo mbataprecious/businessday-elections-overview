@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
+import logo from "../../assets/images/bday logo.png";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -9,10 +10,8 @@ import {
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Interactive Map", to: "/map" },
+  { name: "Election Now", to: "/map/future" },
 ];
 
 export default function Header() {
@@ -38,14 +37,14 @@ export default function Header() {
               >
                 <div className="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">
                   <div className="flex w-full items-center justify-between md:w-auto">
-                    <a href="#">
+                    <Link to="/">
                       <span className="sr-only">Your Company</span>
                       <img
                         alt="Your Company"
                         className="h-8 w-auto sm:h-10"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
+                        src={logo}
                       />
-                    </a>
+                    </Link>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
                         <span className="sr-only">Open main menu</span>
@@ -56,19 +55,19 @@ export default function Header() {
                 </div>
                 <div className="hidden md:ml-10 md:block md:space-x-8 md:pr-4">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.to}
                       className="font-medium text-gray-500 hover:text-gray-900"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                   <a
-                    href="#"
+                    href="https://businessday.ng/"
                     className="font-medium text-red-600 hover:text-red-500"
                   >
-                    Log in
+                    Visit Site
                   </a>
                 </div>
               </nav>
@@ -105,20 +104,20 @@ export default function Header() {
                   </div>
                   <div className="space-y-1 px-2 pt-2 pb-3">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                   <a
-                    href="#"
+                    href="https://businessday.ng/"
                     className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-red-600 hover:bg-gray-100"
                   >
-                    Log in
+                    Visit Us
                   </a>
                 </div>
               </Popover.Panel>
@@ -142,7 +141,7 @@ export default function Header() {
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <Link
-                    to="#"
+                    to="/map"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 md:py-4 md:px-10 md:text-lg"
                   >
                     Go to Interactive Map{" "}
@@ -165,7 +164,7 @@ export default function Header() {
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <img
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full"
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
+          src="https://ichef.bbci.co.uk/news/800/cpsprodpb/18216/production/_100183889_gettyimages-469292208.jpg"
           alt=""
         />
       </div>

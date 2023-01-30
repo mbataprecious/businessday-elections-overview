@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import CountDownView from "../components/landing/CountDownView";
 import CtaSection from "../components/landing/CtaSection";
 import Header from "../components/landing/header";
@@ -10,6 +11,7 @@ const Home = () => {
       <IntroSection />
       <CountDownView />
       <CtaSection />
+      <Footer />
     </>
   );
 };

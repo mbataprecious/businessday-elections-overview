@@ -227,7 +227,14 @@ export const addingColorAndEvent = (
 ) => {
   layer
     .setStyle({
-      fillColor: ColorLuminance(partyColors[winningCandidate.party], 0.4),
+      fillColor: ColorLuminance(
+        winningCandidate.party === "PDP"
+          ? partyColors.PDP
+          : winningCandidate.party === "APC"
+          ? partyColors.APC
+          : "#89317a",
+        0.4
+      ),
       fillOpacity: 1,
     })
     .bringToBack();
@@ -240,12 +247,26 @@ export const addingColorAndEvent = (
     },
     mouseover: (event) => {
       event.target.setStyle({
-        fillColor: ColorLuminance(partyColors[winningCandidate.party], 0.2),
+        fillColor: ColorLuminance(
+          winningCandidate.party === "PDP"
+            ? partyColors.PDP
+            : winningCandidate.party === "APC"
+            ? partyColors.APC
+            : "#89317a",
+          0.2
+        ),
       });
     },
     mouseout: (event) => {
       event.target.setStyle({
-        fillColor: ColorLuminance(partyColors[winningCandidate.party], 0.4),
+        fillColor: ColorLuminance(
+          winningCandidate.party === "PDP"
+            ? partyColors.PDP
+            : winningCandidate.party === "APC"
+            ? partyColors.APC
+            : "#89317a",
+          0.4
+        ),
       });
     },
   });
