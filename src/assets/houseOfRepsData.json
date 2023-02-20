@@ -579,7 +579,7 @@
         "constituency": "FC/011/AD",
         "state": "AD",
         "is_unknown": false,
-        "name": "Jada/Ganye/Tonng/Mayo Belwa"
+        "name": "Jada/Ganye/Toungo/Mayo Belwa"
       },
       "geometry": {
         "type": "Polygon",
@@ -4753,7 +4753,7 @@
         "constituency": "FC/073/BO",
         "state": "BO",
         "is_unknown": false,
-        "name": "Kukawa/Mobbar/Abadam/\nGuzamali"
+        "name": "Kukawa/Mobbar/Abadam/Guzamali"
       },
       "geometry": {
         "type": "Polygon",
@@ -7002,7 +7002,7 @@
         "constituency": "FC/110/EK",
         "state": "EK",
         "is_unknown": false,
-        "name": "Ekiti South West/Ikere/Orun/Ise"
+        "name": "Ekiti South West/Ikere/Ise/Orun"
       },
       "geometry": {
         "type": "Polygon",
@@ -7110,7 +7110,7 @@
         "constituency": "FC/112/EK",
         "state": "EK",
         "is_unknown": false,
-        "name": "Ido-Osi/Moba/Ilejemeje"
+        "name": "Ido/Osi, Moba/Ilejeme"
       },
       "geometry": {
         "type": "Polygon",
@@ -13467,7 +13467,7 @@
         "constituency": "FC/219/KG",
         "state": "KG",
         "is_unknown": false,
-        "name": "Lokoja/Kogi"
+        "name": "Kogi (Lokoja)/Kogi (K.K.)"
       },
       "geometry": {
         "type": "Polygon",
@@ -16011,7 +16011,7 @@
         "constituency": "FC/267/OG",
         "state": "OG",
         "is_unknown": false,
-        "name": "Abeokuta North/Obafemi-Owode/Odeda"
+        "name": "Abeokuta North/ Obafemi-Owode/Odeda"
       },
       "geometry": {
         "type": "Polygon",
@@ -18039,7 +18039,7 @@
         "constituency": "FC/302/OY",
         "state": "OY",
         "is_unknown": false,
-        "name": "Ogbomosho North/Ogbomosho South/Orire"
+        "name": "Ogbomoso North/Ogbomoso South/Orire"
       },
       "geometry": {
         "type": "Polygon",

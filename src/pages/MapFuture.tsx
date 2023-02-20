@@ -14,7 +14,7 @@ const MapFuture = () => {
       <Banner />
       <Navigation />
       <SetupSection />
-      <MapArea />
+      <MapArea key={`${Math.random()}`} />
       <Footer />
     </>
   );

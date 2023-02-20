@@ -95,24 +95,24 @@ const GeoJson = ({
     let prevStateLayerGroup = stateLayerGroup.current;
     let prevCount = geoJsonFeatureCount.current;
 
-    if (mounted.current) {
-      console.log(electionData);
-      console.log("This is my code");
-      //if isState then show only the stateLayerGroup
-      if (!isState) {
-        if (map.getZoom() >= 8) {
-          map.removeLayer(stateLayerGroup.current);
-          map.addLayer(collisonGroup.current);
-        } else {
-          map.removeLayer(collisonGroup.current);
-          map.addLayer(stateLayerGroup.current);
-        }
+    // if (mounted.current) {
+    console.log(electionData);
+    console.log("This is my code");
+    //if isState then show only the stateLayerGroup
+    if (!isState) {
+      if (map.getZoom() >= 8) {
+        map.removeLayer(stateLayerGroup.current);
+        map.addLayer(collisonGroup.current);
       } else {
-        map.addLayer(stateLayerGroup.current);
         map.removeLayer(collisonGroup.current);
+        map.addLayer(stateLayerGroup.current);
       }
+    } else {
+      map.addLayer(stateLayerGroup.current);
+      map.removeLayer(collisonGroup.current);
     }
-    mounted.current = true;
+    // }
+    // mounted.current = true;
     return () => {
       console.log("unmounted", prevCount);
 
