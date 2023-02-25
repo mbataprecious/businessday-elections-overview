@@ -1,10 +1,12 @@
 import type { regionStates } from "./utils";
 export type year = 2015 | 2019;
 export type RegionStateType = typeof regionStates;
-export type CandidateData = {
+export interface CandidateData {
   candidate: string;
   constituency: string;
   is_incumbent: string;
+  partyLogoURL: string;
+  image: string;
   party: party;
   race: string;
   region: keyof RegionStateType;
@@ -13,7 +15,7 @@ export type CandidateData = {
   votes: number;
   won: "won" | "lost";
   year: year;
-};
+}
 
 export type summaryValue = {
   campaigns: number;
@@ -72,3 +74,22 @@ export type SelectedLayer = {
   state: any;
   layer?: L.Polygon;
 };
+
+export interface ElectionUpdate {
+  0: number;
+  name: string;
+  code: string;
+  state: string;
+  stateCode: string;
+  LP: number;
+  APC: number;
+  PDP: number;
+  NNPP: number;
+}
+
+const updateKeys = [
+  "Presidential update",
+  "Presidential candidates",
+  "governorship update",
+  "governorship candidates",
+];

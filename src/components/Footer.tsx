@@ -118,8 +118,7 @@ const Footer = () => {
                   businessdaynigeria.zendesk.com
                   <br />
                   <br />
-                  Head Quarters: The Brook, 6, Point Road, GRA, Apapa, Lagos,
-                  Nigeria.
+                  Head Quarters: 6A George Street, Ikoyi Lagos.
                   <br />
                 </div>
                 <Link className="hover:opacity-75" to=""></Link>
@@ -142,7 +141,7 @@ const Footer = () => {
                   className="hover:opacity-75"
                   href="https://wa.me/2348068545123"
                 >
-                  Chat on Wastapp
+                  Chat on Whastapp
                   <br />
                   (+2348068545123)
                 </a>
@@ -150,9 +149,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         <p className="mt-8 text-xs text-gray-100">
-          All right reserved &copy; 2022 BusinessdayOnline
+          All right reserved &copy;2023 Businessday Media Ltd
         </p>
       </div>
     </footer>

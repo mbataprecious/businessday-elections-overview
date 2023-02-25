@@ -1642,7 +1642,7 @@
       "properties": {
         "state": "FC",
         "id": "FC",
-        "name": "Fct",
+        "name": "FCT",
         "constituency": "FC",
         "is_unknown": false,
         "boundary": true

@@ -1,13 +1,38 @@
 import { Location } from "react-router";
-import type { ElectionDataType, RaceType } from "./utilTypes";
+import type { ElectionDataType, ElectionUpdate, RaceType } from "./utilTypes";
 import type { CandidateData } from "./utilTypes";
 import L from "leaflet";
+import { read, utils } from "xlsx";
 //https://inecnigeria.org/wp-content/uploads/2018/10/ADC.jpg
 export const fetchElectionData = async () => {
   try {
     let res = await fetch("/electionData.json");
     console.log(res);
     return (await res.json()) as ElectionDataType;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export const fetchDataFromSheet = async () => {
+  try {
+    const f = await (
+      await fetch(
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vTX2A28f_0NWa0EJUrWjl_2V_KUAFzf4UJwD21UGXyryg_m1_6xIoxIcph2BGOWEGxvrt_xHP8FVdSK/pub?output=xlsx"
+      )
+    ).arrayBuffer();
+    const wb = read(f);
+    console.log(wb.SheetNames);
+    const data = wb.SheetNames.reduce((acc, sheetName) => {
+      acc[sheetName] = utils.sheet_to_json<CandidateData | ElectionUpdate>(
+        wb.Sheets[sheetName]
+      );
+      return acc;
+    }, {} as Record<string, (CandidateData | ElectionUpdate)[]>);
+
+    // utils.sheet_to_json<Nominee>(wb.Sheets[wb.SheetNames[0]]);
+    console.log("data from sheet", data);
+    return data;
   } catch (error: any) {
     throw new Error(error);
   }
@@ -95,6 +120,11 @@ export let stateIdMap = statesArray.reduce((acc, state) => {
   acc[id!] = { ...state, id: id };
   return acc;
 }, {} as Record<string, { code: string; name: string; id: string }>);
+
+export let stateNameMap = statesArray.reduce((acc, state) => {
+  acc[state.name] = state;
+  return acc;
+}, {} as Record<string, { code: string; name: string }>);
 
 export let stateCodeMap = statesArray.reduce((acc, state) => {
   let code = state.code;
@@ -195,6 +225,7 @@ export const partyColors = {
   UPP: "#5d93ea",
   PRP: "#3e3ef7",
   YPP: "#ef446c",
+  NaN: "#66666c",
 };
 
 export function ColorLuminance(hex: string, lum: number) {
@@ -221,18 +252,14 @@ export function ColorLuminance(hex: string, lum: number) {
 export const addingColorAndEvent = (
   map: L.Map,
   layer: L.Polygon,
-  winningCandidate: CandidateData,
+  party: CandidateData["party"],
   setSelectedState: any,
   state: any
 ) => {
   layer
     .setStyle({
       fillColor: ColorLuminance(
-        winningCandidate.party === "PDP"
-          ? partyColors.PDP
-          : winningCandidate.party === "APC"
-          ? partyColors.APC
-          : "#89317a",
+        partyColors[party] ? partyColors[party] : partyColors.NaN,
         0.4
       ),
       fillOpacity: 1,
@@ -248,11 +275,7 @@ export const addingColorAndEvent = (
     mouseover: (event) => {
       event.target.setStyle({
         fillColor: ColorLuminance(
-          winningCandidate.party === "PDP"
-            ? partyColors.PDP
-            : winningCandidate.party === "APC"
-            ? partyColors.APC
-            : "#89317a",
+          partyColors[party] ? partyColors[party] : partyColors.NaN,
           0.2
         ),
       });
@@ -260,11 +283,7 @@ export const addingColorAndEvent = (
     mouseout: (event) => {
       event.target.setStyle({
         fillColor: ColorLuminance(
-          winningCandidate.party === "PDP"
-            ? partyColors.PDP
-            : winningCandidate.party === "APC"
-            ? partyColors.APC
-            : "#89317a",
+          partyColors[party] ? partyColors[party] : partyColors.NaN,
           0.4
         ),
       });
@@ -329,4 +348,19 @@ export const getConstituentMap = (
 
     return { ...acc, ...listByContituency };
   }, {} as Record<string, CandidateData[]>);
+};
+
+export const getHighestParty = (partyMapToTotal: {
+  APC: number;
+  PDP: number;
+  LP: number;
+  NNPP: number;
+}) => {
+  let arr = Object.values(partyMapToTotal);
+  let max = Math.max(...arr);
+
+  if (max === 0) return undefined;
+  return Object.keys(partyMapToTotal).find(
+    (x) => partyMapToTotal[x as keyof typeof partyMapToTotal] === max
+  );
 };

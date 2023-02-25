@@ -16,17 +16,25 @@ import {
   addingEmptyStateColorAndEvent,
   ColorLuminance,
   getConstituentMap,
+  getHighestParty,
   stateCodeMap,
+  stateNameMap,
 } from "../utils";
 import { polygon, centroid } from "@turf/turf";
-import { ElectionDataType, RaceType, CandidateData } from "../utilTypes";
+import {
+  ElectionDataType,
+  RaceType,
+  CandidateData,
+  ElectionUpdate,
+  party,
+} from "../utilTypes";
 //import PolygonWithText from "./PolygonWithText";
 //APC-#55be70
 //PDP-#126abd
 type Props = {
   geoJson: any;
   isState?: boolean;
-  electionData?: ElectionDataType;
+  electionData?: Record<string, CandidateData[] | ElectionUpdate[]>;
   year: string;
   title: RaceType;
   setSelectedState: any;
@@ -61,18 +69,24 @@ const GeoJson = ({
   let mounted = useRef(false);
   let prevtitle = useRef(title);
   let map = useMap();
-  const titledDataStates = useMemo(
+  //creating the map to states
+  let constituentMap = useMemo(
     () =>
-      ({} as {
-        [Key: string]: CandidateData[];
-      }),
+      title === "president" || title === "governor"
+        ? (electionData![title] as ElectionUpdate[]).reduce((acc, lga) => {
+            acc[lga.state] = [...(acc[lga.state] ?? []), lga];
+            return acc;
+          }, {} as Record<string, ElectionUpdate[]>)
+        : (electionData![title] as CandidateData[]).reduce((acc, candidate) => {
+            acc[candidate.constituency] = [
+              ...acc[candidate.constituency],
+              candidate,
+            ];
+            return acc;
+          }, {} as Record<string, CandidateData[]>),
     [electionData, title, year]
   );
 
-  let constituentMap = useMemo(
-    () => ({} as Record<string, CandidateData[]>),
-    [titledDataStates, title, year]
-  );
   console.log(constituentMap);
   const zoomEvent = useCallback(() => {
     if (isState) {
@@ -130,6 +144,7 @@ const GeoJson = ({
       map.off("zoomend", zoomEvent);
     }
   }, [title, map, isState]);
+
   const eachFeature = (state: any, layer: L.Polygon) => {
     if (geoJsonFeatureCount.current === 0) {
       console.log("new", geoJsonFeatureCount.current);
@@ -141,28 +156,30 @@ const GeoJson = ({
     const isMarkersDrawn =
       geoJsonFeatureCount.current >= geoJson.features.length;
     let center;
-    if (stateCodeMap[state.properties.id]) {
+    if (stateNameMap[state.properties.name]) {
       layer.setStyle(senateStyle).bringToFront();
       if (isState) {
-        let stateMap = Object.keys(titledDataStates).reduce(
-          (acc, stateCode) => {
-            let sorted = titledDataStates[stateCode].sort((a, b) => {
-              return Number(b.votes) - Number(a.votes);
-            });
-            acc[stateCode] = sorted;
-            return acc;
-          },
-          {} as Record<string, CandidateData[]>
-        );
-        if (stateMap[state.properties.id]) {
-          let winningCandidate = stateMap[state.properties.id][0];
-          addingColorAndEvent(
-            map,
-            layer,
-            winningCandidate,
-            setSelectedState,
-            state
+        let stateMap = constituentMap as Record<string, ElectionUpdate[]>;
+        if (stateMap[state.properties.name]) {
+          let totalPerState = stateMap[state.properties.name].reduce(
+            (acc, { PDP, LP, NNPP, APC }) => {
+              acc.PDP += PDP;
+              acc.APC += APC;
+              acc.NNPP += NNPP;
+              acc.LP += LP;
+              return acc;
+            },
+            { APC: 0, PDP: 0, LP: 0, NNPP: 0 } as {
+              APC: number;
+              PDP: number;
+              LP: number;
+              NNPP: number;
+            }
           );
+          console.log("total per state ", totalPerState);
+          const party = getHighestParty(totalPerState) as string as party;
+          console.log("the highest party", party);
+          addingColorAndEvent(map, layer, party, setSelectedState, state);
         } else {
           //layer events
           addingEmptyStateColorAndEvent(map, layer, setSelectedState);
@@ -197,11 +214,17 @@ const GeoJson = ({
       layer.setStyle(jsonStyle).bringToBack();
       // console.log(constituentMap);
       if (constituentMap[state.properties.name]) {
-        let winningCandidate = constituentMap[state.properties.name][0];
+        let constituentCandidates = constituentMap[
+          state.properties.id
+        ] as CandidateData[];
+        let sorted = constituentCandidates.sort((a, b) => {
+          return Number(b.votes) - Number(a.votes);
+        });
+        let winningCandidate = sorted[0].votes ? sorted[0] : undefined;
         addingColorAndEvent(
           map,
           layer,
-          winningCandidate,
+          winningCandidate?.party as party,
           setSelectedState,
           state
         );

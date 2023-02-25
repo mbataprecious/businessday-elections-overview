@@ -20,7 +20,11 @@ export default function CtaSection() {
                   Election Updates.
                 </h2>
                 <div className="mt-6 text-base">
-                  <a href="#" className="font-semibold text-white">
+                  <a
+                    href="https://businessday.ng/category/politics/"
+                    target={"_blank"}
+                    className="font-semibold text-white"
+                  >
                     view updates
                     <span aria-hidden="true"> &rarr;</span>
                   </a>

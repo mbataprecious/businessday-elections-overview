@@ -8,8 +8,6 @@ import React, {
 import { useMap, GeoJSON } from "react-leaflet";
 import "../components/leaflet.layergroup.collision";
 import * as L from "leaflet";
-// import stateGeoJson from "../assets/statedata.json";
-import senateGeoJson from "../assets/senatedata.json";
 import { PathOptions } from "leaflet";
 import {
   addingColorAndEvent,
@@ -128,6 +126,7 @@ const GeoJson = ({
       map.off("zoomend", zoomEvent);
     }
   }, [title, map, isState]);
+
   const eachFeature = (state: any, layer: L.Polygon) => {
     if (geoJsonFeatureCount.current === 0) {
       console.log("new", geoJsonFeatureCount.current);
@@ -157,7 +156,7 @@ const GeoJson = ({
           addingColorAndEvent(
             map,
             layer,
-            winningCandidate,
+            winningCandidate.party,
             setSelectedState,
             state
           );
@@ -199,7 +198,7 @@ const GeoJson = ({
         addingColorAndEvent(
           map,
           layer,
-          winningCandidate,
+          winningCandidate.party,
           setSelectedState,
           state
         );

@@ -12,9 +12,17 @@ type Props = {
 
 const ZoomControler = () => {
   const map = useMap();
-  const { selectedState, title, year, setSelectedState } = useElectionContext();
+  const {
+    selectedState,
+    title,
+    year,
+    setFutureSelectedState,
+    setSelectedState,
+    futureSelectedState,
+  } = useElectionContext();
 
   useEffect(() => {
+    setFutureSelectedState?.(undefined);
     if (!selectedState) {
       map.zoomOut(6, { animate: true });
     }
@@ -32,6 +40,26 @@ const ZoomControler = () => {
       //   map.zoomOut(6);
     }
   }, [selectedState, title, year, map]);
+
+  useEffect(() => {
+    setSelectedState?.(undefined);
+    if (!futureSelectedState) {
+      map.zoomOut(6, { animate: true });
+    }
+    if (futureSelectedState) {
+      let center = centroid(futureSelectedState.state);
+      if (map.getZoom() <= 7) {
+        map.flyTo(
+          L.latLng(
+            center.geometry.coordinates[1],
+            center.geometry.coordinates[0]
+          ),
+          8
+        );
+      }
+      //   map.zoomOut(6);
+    }
+  }, [futureSelectedState, title, map]);
 
   return null;
 };

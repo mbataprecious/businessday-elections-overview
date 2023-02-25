@@ -11,60 +11,35 @@ type Props = {
 };
 
 const Banner = ({ type = "past" }: Props) => {
+  console.log(type);
   return (
     <Container>
-{   type==="past" ?  <div className="flex flex-col md:flex-row h-[500px] md:h-[308px] bg-[linear-gradient(260.6deg,#C80700_16.16%,#FD6645_68.48%)] w-full overflow-hidden rounded-[40px]">
+      <div className="flex flex-col md:flex-row h-[500px] md:h-[308px] bg-[linear-gradient(260.6deg,#C80700_16.16%,#FD6645_68.48%)] w-full overflow-hidden rounded-[40px]">
         <div className=" md:w-2/5 pl-6 py-6 my-auto text-white">
-          <h2 className="text-5xl font-bold">ELECTION TODAY</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">
+            BusinessDay Election Data Portal
+          </h2>
           <p className=" text-sm leading-4 pr-9 mb-12">
-            This is a concise historical election overview for the past two
-            elections. This help draw insights on where we are and predictive
-            charts about the future.
+            Get real time updates on Nigeria's 2023 election results & explore
+            historical voting patterns across the country.
           </p>
           <CountDownSmall
-            expiryTimestamp={new Date(dayjs("2023-02-25").valueOf())}
+            expiryTimestamp={new Date(dayjs("2023-02-26").valueOf())}
           />
         </div>
         <div className=" md:w-3/5 relative h-full">
-          {" "}
           <img
             src={flagImg}
             alt="nigerian flag"
             className=" hidden md:inline-block absolute -top-[5px] -right-10"
-          />{" "}
+          />
           <img
             src={candidatesImg}
             alt="candidates pictures"
             className="absolute bottom-0"
           />
         </div>
-      </div>:
-      <div className="flex flex-col md:flex-row h-[500px] md:h-[308px] bg-[linear-gradient(260.6deg,#C80700_16.16%,#FD6645_68.48%)] w-full overflow-hidden rounded-[40px]">
-      <div className=" md:w-2/5 pl-6 py-6 my-auto text-white">
-        <h2 className="text-5xl font-bold">ELECTION TODAY</h2>
-        <p className=" text-sm leading-4 pr-9 mb-12">
-          This is a concise historical election overview for the past two
-          elections. This help draw insights on where we are and predictive
-          charts about the future.
-        </p>
-        <CountDownSmall
-          expiryTimestamp={new Date(dayjs("2023-02-25").valueOf())}
-        />
       </div>
-      <div className=" md:w-3/5 relative h-full">
-        <img
-          src={flagImg}
-          alt="nigerian flag"
-          className=" hidden md:inline-block absolute -top-[5px] -right-10"
-        />
-        <img
-          src={candidatesImg}
-          alt="candidates pictures"
-          className="absolute bottom-0"
-        />
-      </div>
-    </div>
-      }
     </Container>
   );
 };

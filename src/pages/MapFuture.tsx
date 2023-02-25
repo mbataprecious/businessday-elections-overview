@@ -5,6 +5,7 @@ import SetupSection from "../components/SetupStateFuture";
 import MapArea from "../components/MapAreaFuture";
 import Banner from "../components/Banner";
 import Navigation from "../components/Navigation";
+import FutureViewStats from "../components/FutureViewStats";
 // import StateSetupSection from "../components/StateSetupSection";
 
 const MapFuture = () => {
@@ -13,6 +14,7 @@ const MapFuture = () => {
       <Header />
       <Banner />
       <Navigation />
+      <FutureViewStats />
       <SetupSection />
       <MapArea key={`${Math.random()}`} />
       <Footer />

@@ -1,4 +1,3 @@
-import { ChartBarIcon } from "@heroicons/react/24/outline";
 import { MapIcon } from "@heroicons/react/24/outline";
 import { CircleStackIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -8,19 +7,13 @@ const incentives = [
     name: "Explore Interactive Map",
     Icon: MapIcon,
     description:
-      "view and explore various states, down to senatorial data as far back as 2015 elections, view voters",
+      "View and explore voting patterns in various states down to senatorial data as far back as 2015 elections",
   },
   {
-    name: "View Past Electorial Historical Data",
+    name: "View Past Electoral Historical Data",
     Icon: CircleStackIcon,
     description:
-      "view past governorsip and Presidentialm Election data on the go to build your statistical knownledge",
-  },
-  {
-    name: "Analitical Map",
-    Icon: ChartBarIcon,
-    description:
-      "view and explore various states, down to senatorial data as far back as 2015 elections, view voters.",
+      "View past governorship and presidential election data on the go to build your statistical knowledge ",
   },
 ];
 
@@ -29,7 +22,7 @@ export default function IntroSection() {
     <div className="bg-black">
       <div className="mx-auto max-w-7xl py-10 sm:px-2 lg:px-4">
         <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
-          <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-8 lg:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-8 lg:grid-cols-2">
             {incentives.map(({ name, description, Icon }) => (
               <div key={name} className="flex flex-col">
                 <div className=" flex justify-center">

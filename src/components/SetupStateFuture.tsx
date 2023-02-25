@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Container from "./Container";
 import Select from "./Select";
 import { useElectionContext } from "../context/ElectionContext";
@@ -7,13 +7,22 @@ import { useElectionContext } from "../context/ElectionContext";
 import type { RaceType } from "../utilTypes";
 
 const SetupSection = () => {
-  const { year, setYear, title, setTitle, setSelectedState } =
+  const mounted = useRef(false);
+  const { year, title, setTitle, setFutureSelectedState } =
     useElectionContext();
 
   const handleRaceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTitle!(e.target.value as RaceType);
-    setSelectedState?.(undefined);
+    setFutureSelectedState?.(undefined);
   };
+
+  useEffect(() => {
+    if (!mounted.current) {
+      setTitle?.("president");
+    }
+    mounted.current = true;
+    return () => {};
+  }, []);
 
   return (
     <Container className=" mt-10">
@@ -31,9 +40,15 @@ const SetupSection = () => {
             onChange={handleRaceChange}
           >
             <option value="president">Presidential</option>
-            <option value="governor">Governorship</option>
-            <option value="house">House Of Rep</option>
-            <option value="senate">Senate</option>
+            <option disabled value="governor">
+              Governorship
+            </option>
+            <option disabled value="house">
+              House Of Rep
+            </option>
+            <option disabled value="senate">
+              Senate
+            </option>
           </Select>
         </div>
         {/* <div className=" flex-1 px-2">

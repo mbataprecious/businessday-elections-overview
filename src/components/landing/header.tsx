@@ -90,9 +90,9 @@ export default function Header() {
                   <div className="flex items-center justify-between px-5 pt-4">
                     <div>
                       <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=red&shade=600"
-                        alt=""
+                        alt="Your Company"
+                        className="h-8 w-auto sm:h-10"
+                        src={logo}
                       />
                     </div>
                     <div className="-mr-2">
@@ -133,7 +133,7 @@ export default function Header() {
                 </span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0">
-                Explore Previous Election data via our interactive map, view
+                Explore Previous Election Data via our interactive map, view
                 winning candidate and their constituency .
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">

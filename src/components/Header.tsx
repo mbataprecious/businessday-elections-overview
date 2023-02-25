@@ -10,13 +10,19 @@ const Header = () => {
           <img className=" h-12" src={logo} alt="logo" />
         </Link>
       </div>
-      <Container className="flex justify-end">
-        <Link to={"/"} className="text-gray-600 hover:text-gray-400 p-4">
-          Home
-        </Link>
-        <a href="https://businessday.ng/" className="text-red-500 p-4">
-          Visit businessday
-        </a>
+      <Container className="flex justify-between">
+        <div className=" flex items-center h-full my-auto">
+          <div className="blob red" />
+          <p className=" font-semibold text-lg">LIVE UPDATE</p>
+        </div>
+        <div className=" flex">
+          <Link to={"/"} className="text-gray-600 hover:text-gray-400 p-4">
+            Home
+          </Link>
+          <a href="https://businessday.ng/" className="text-red-500 p-4">
+            Visit businessday
+          </a>
+        </div>
       </Container>
     </div>
   );

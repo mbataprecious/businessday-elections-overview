@@ -13,7 +13,7 @@ import ZoomControler from "./ZoomControler";
 
 var feature = L.geoJson(stateGeoJson.features as any);
 const MyLeafletMap = () => {
-  const { data, year, setSelectedState, title } = useElectionContext();
+  const { updates, year, setFutureSelectedState, title } = useElectionContext();
   return (
     <MapContainer
       style={{ height: "700px", border: "2px solid #000" }}
@@ -25,14 +25,14 @@ const MyLeafletMap = () => {
       minZoom={6}
     >
       <ZoomControler />
-      {!!data && (
+      {!!updates && (
         <>
           {(title === "president" || title === "governor") && (
             <FutureGeoJson
               geoJson={stateGeoJson}
-              electionData={data}
+              electionData={updates}
               isState
-              setSelectedState={setSelectedState}
+              setSelectedState={setFutureSelectedState}
               year={year}
               title={title}
             />
@@ -40,8 +40,8 @@ const MyLeafletMap = () => {
           {title === "senate" && (
             <FutureGeoJson
               geoJson={senateGeoJson}
-              electionData={data}
-              setSelectedState={setSelectedState}
+              electionData={updates}
+              setSelectedState={setFutureSelectedState}
               year={year}
               title={title}
             />
@@ -49,8 +49,8 @@ const MyLeafletMap = () => {
           {title === "house" && (
             <FutureGeoJson
               geoJson={houseGeoJson}
-              electionData={data}
-              setSelectedState={setSelectedState}
+              electionData={updates}
+              setSelectedState={setFutureSelectedState}
               year={year}
               title={title}
             />
