@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Container>
       <div className="flex lg:w-2/5 justify-between mt-3 items-center">
-        <h3 className=" font-display font-semibold text-lg">
+        <h3 className=" font-display font-semibold text-sm  md:text-lg">
           Explore Elections
         </h3>
         <NavLink to={"/map"} end className={navClass}>
@@ -17,7 +17,7 @@ const Navigation = () => {
           The Past
         </NavLink>
         <NavLink to={"/map/future"} end className={navClass}>
-          The Future
+          2023
           <BsPlus color="#FFFFFF" />
         </NavLink>
       </div>

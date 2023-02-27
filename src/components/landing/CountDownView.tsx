@@ -12,7 +12,7 @@ const CountDownView = () => {
         </h2>
         <div className=" flex justify-center items-center pt-9 pb-32 text-white">
           <CountDown
-            expiryTimestamp={new Date(dayjs("2023-02-26").valueOf())}
+            expiryTimestamp={new Date(dayjs().valueOf())}
             className=" bg-[#c62c2c]"
             textClassName=" text-gray-900"
             size="big"

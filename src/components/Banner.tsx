@@ -23,9 +23,7 @@ const Banner = ({ type = "past" }: Props) => {
             Get real time updates on Nigeria's 2023 election results & explore
             historical voting patterns across the country.
           </p>
-          <CountDownSmall
-            expiryTimestamp={new Date(dayjs("2023-02-26").valueOf())}
-          />
+          <CountDownSmall expiryTimestamp={new Date(dayjs().valueOf())} />
         </div>
         <div className=" md:w-3/5 relative h-full">
           <img

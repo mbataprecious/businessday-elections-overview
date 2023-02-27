@@ -85,6 +85,7 @@ export interface ElectionUpdate {
   APC: number;
   PDP: number;
   NNPP: number;
+  total: number;
 }
 
 const updateKeys = [

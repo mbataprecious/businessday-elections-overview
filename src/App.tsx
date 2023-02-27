@@ -1,4 +1,5 @@
 import { useRoutes } from "react-router";
+import ScrollToTopAndBottom from "./components/Scroller";
 import NoMatch from "./pages/404page";
 import Home from "./pages/Home";
 import MapFuture from "./pages/MapFuture";
@@ -27,6 +28,7 @@ function App() {
           element: <NoMatch />,
         },
       ])}
+      <ScrollToTopAndBottom />
     </>
   );
 }

@@ -21,7 +21,7 @@ export default function CtaSection() {
                 </h2>
                 <div className="mt-6 text-base">
                   <a
-                    href="https://businessday.ng/category/politics/"
+                    href="https://businessday.ng/category/nigeriadecidesliveupdates/"
                     target={"_blank"}
                     className="font-semibold text-white"
                   >

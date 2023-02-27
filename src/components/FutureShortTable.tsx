@@ -1,7 +1,12 @@
 import React, { useMemo, useCallback } from "react";
-import type { CandidateData, ElectionUpdate } from "../utilTypes";
+import type { CandidateData, ElectionUpdate, party } from "../utilTypes";
 import { useElectionContext } from "../context/ElectionContext";
-import { getConstituentMap, partyColors, ColorLuminance } from "../utils";
+import {
+  getConstituentMap,
+  partyColors,
+  ColorLuminance,
+  getHighestParty,
+} from "../utils";
 import { BsXLg, BsCheckLg } from "react-icons/bs";
 import numeral from "numeral";
 
@@ -57,6 +62,30 @@ const FutureShortTable = ({ className, candidates, ...rest }: Props) => {
     }
   }, [futureSelectedState, title, constituentMap]);
 
+  let totalPerParty = useMemo(
+    () =>
+      (selectedList as ElectionUpdate[]).reduce(
+        (acc, { PDP, LP, NNPP, APC, total }) => {
+          acc.PDP += PDP;
+          acc.APC += APC;
+          acc.NNPP += NNPP;
+          acc.LP += LP;
+          acc.total += total;
+          return acc;
+        },
+        { APC: 0, PDP: 0, LP: 0, NNPP: 0, total: 0 } as {
+          APC: number;
+          PDP: number;
+          LP: number;
+          NNPP: number;
+          total: number;
+        }
+      ),
+    [selectedList]
+  );
+
+  const { total, ...totalOfParty } = totalPerParty;
+
   const handleClose = () => {
     setFutureSelectedState?.(undefined);
   };
@@ -81,7 +110,26 @@ const FutureShortTable = ({ className, candidates, ...rest }: Props) => {
             </div>
             {title === "president" || title === "governor"
               ? selectedList![0].state.toUpperCase() + " STATE"
-              : ""}
+              : ""}{" "}
+            {getHighestParty(totalOfParty) ? (
+              <div className=" bg-white flex justify-center items-center rounded-lg gap-4 p-3">
+                <div
+                  style={{
+                    background: ColorLuminance(
+                      partyColors[getHighestParty(totalOfParty) as party],
+                      0.4
+                    ),
+                  }}
+                  // style={{ background: "#000000" }}
+                  className=" w-6 h-6 rounded-full"
+                />
+                <p className="text-black">
+                  {getHighestParty(totalOfParty)} Winning
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
 
           <div className={` !bg-[#000000]  w-full px-3`}>
@@ -126,9 +174,9 @@ const FutureShortTable = ({ className, candidates, ...rest }: Props) => {
           </div>
           {!!selectedList &&
             (title === "president" || title === "governor" ? (
-              <div className="h-[300px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-[#fafbfc]">
+              <div className="h-[250px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-[#fafbfc]">
                 {(selectedList as ElectionUpdate[]).map(
-                  ({ name, PDP, APC, LP, NNPP }) => (
+                  ({ name, PDP, APC, LP, NNPP, total }) => (
                     <div
                       key={name}
                       className={`flex w-full px-3 border-b-2 border-gray-500`}
@@ -137,25 +185,27 @@ const FutureShortTable = ({ className, candidates, ...rest }: Props) => {
                         {name}
                       </div>
                       <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
-                        {PDP}
+                        {numeral(PDP).format("0,0")}
                       </div>
                       <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
-                        {LP}
+                        {numeral(LP).format("0,0")}
                       </div>
                       <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
-                        {APC}
+                        {numeral(APC).format("0,0")}
                       </div>
                       <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
-                        {NNPP}
+                        {numeral(NNPP).format("0,0")}
                       </div>
                       <div className="font-medium text-sm pt-5 px-1 text-left flex-1"></div>
-                      <div className="font-medium text-sm pt-5 px-1 text-left flex-1"></div>
+                      <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                        {numeral(total).format("0,0")}
+                      </div>
                     </div>
                   )
                 )}
               </div>
             ) : (
-              <div className="h-[300px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-[#fafbfc]">
+              <div className="h-[250px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-[#fafbfc]">
                 {(selectedList as CandidateData[]).map(
                   ({
                     candidate,
@@ -198,6 +248,33 @@ const FutureShortTable = ({ className, candidates, ...rest }: Props) => {
                 )}
               </div>
             ))}
+          <>
+            {(title === "president" || title === "governor") && (
+              <div
+                className={`flex w-full px-3 border-b-2 border-gray-500 pb-2 bg-black text-white`}
+              >
+                <div className="font-medium flex items-center text-sm pt-5 px-1 text-left w-1/3">
+                  Total
+                </div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                  {numeral(totalPerParty.PDP).format("0,0")}
+                </div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                  {numeral(totalPerParty.LP).format("0,0")}
+                </div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                  {numeral(totalPerParty.APC).format("0,0")}
+                </div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                  {numeral(totalPerParty.NNPP).format("0,0")}
+                </div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1"></div>
+                <div className="font-medium text-sm pt-5 px-1 text-left flex-1">
+                  {numeral(totalPerParty.total).format("0,0")}
+                </div>
+              </div>
+            )}
+          </>
         </div>
       </div>
     </>

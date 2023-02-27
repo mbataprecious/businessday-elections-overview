@@ -1,14 +1,33 @@
 import { Location } from "react-router";
 import type { ElectionDataType, ElectionUpdate, RaceType } from "./utilTypes";
 import type { CandidateData } from "./utilTypes";
+// import { XMLParser, XMLBuilder, XMLValidator } from "fast-xml-parser";
 import L from "leaflet";
 import { read, utils } from "xlsx";
 //https://inecnigeria.org/wp-content/uploads/2018/10/ADC.jpg
 export const fetchElectionData = async () => {
   try {
     let res = await fetch("/electionData.json");
-    console.log(res);
     return (await res.json()) as ElectionDataType;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+export const fetchBlogFeeds = async () => {
+  try {
+    let res = await fetch(
+      "https://businessday.ng/category/nigeriadecidesliveupdates/feed/",
+      {
+        // mode: "no-cors",
+        headers: {
+          "Content-Type": "text/xml",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+    console.log(res);
+    let readableStreams = res.body;
+    console.log("hi there", readableStreams);
   } catch (error: any) {
     throw new Error(error);
   }
@@ -33,6 +52,30 @@ export const fetchDataFromSheet = async () => {
     // utils.sheet_to_json<Nominee>(wb.Sheets[wb.SheetNames[0]]);
     console.log("data from sheet", data);
     return data;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
+
+export const fetchTotalFromSheet = async () => {
+  try {
+    const f = await (
+      await fetch(
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vT541PZBQeUDQYqFOMmQTbJzy3epkKV6_KWoU8aLrKfsRReN4oUBIvtzsWcwspmpMTddMpopeBHQU76/pub?output=xlsx"
+      )
+    ).arrayBuffer();
+    const wb = read(f);
+    console.log(wb.SheetNames);
+    const data = wb.SheetNames.reduce((acc, sheetName) => {
+      acc[sheetName] = utils.sheet_to_json<ElectionUpdate>(
+        wb.Sheets[sheetName]
+      );
+      return acc;
+    }, {} as Record<string, ElectionUpdate[]>);
+
+    // utils.sheet_to_json<Nominee>(wb.Sheets[wb.SheetNames[0]]);
+    console.log("temp total", data["TOTAL"][0]);
+    return data["TOTAL"][0];
   } catch (error: any) {
     throw new Error(error);
   }

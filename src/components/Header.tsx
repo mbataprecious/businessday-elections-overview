@@ -12,8 +12,11 @@ const Header = () => {
       </div>
       <Container className="flex justify-between">
         <div className=" flex items-center h-full my-auto">
-          <div className="blob red" />
-          <p className=" font-semibold text-lg">LIVE UPDATE</p>
+          <div className="w-[36px] h-[36px]">
+            <div className="blob red" />
+          </div>
+
+          <p className=" font-semibold text-sm md:text-lg">LIVE UPDATE</p>
         </div>
         <div className=" flex">
           <Link to={"/"} className="text-gray-600 hover:text-gray-400 p-4">

@@ -161,7 +161,7 @@ const GeoJson = ({
       if (isState) {
         let stateMap = constituentMap as Record<string, ElectionUpdate[]>;
         if (stateMap[state.properties.name]) {
-          let totalPerState = stateMap[state.properties.name].reduce(
+          let totalPerParty = stateMap[state.properties.name].reduce(
             (acc, { PDP, LP, NNPP, APC }) => {
               acc.PDP += PDP;
               acc.APC += APC;
@@ -176,8 +176,8 @@ const GeoJson = ({
               NNPP: number;
             }
           );
-          console.log("total per state ", totalPerState);
-          const party = getHighestParty(totalPerState) as string as party;
+          console.log("total per state ", totalPerParty);
+          const party = getHighestParty(totalPerParty) as string as party;
           console.log("the highest party", party);
           addingColorAndEvent(map, layer, party, setSelectedState, state);
         } else {

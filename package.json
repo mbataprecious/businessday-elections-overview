@@ -23,6 +23,7 @@
     "@types/react-svg-map": "^2.1.2",
     "change-case": "^4.1.2",
     "dayjs": "^1.11.6",
+    "fast-xml-parser": "^4.1.2",
     "highcharts": "^10.2.1",
     "highcharts-react-official": "^3.1.0",
     "install": "^0.13.0",

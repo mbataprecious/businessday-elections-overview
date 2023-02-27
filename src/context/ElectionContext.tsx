@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useFetchElectionData } from "../customHooks/useFetchElectionData";
 import { useFetchFutureElectionData } from "../customHooks/useFetchFutureElectionData";
+import { useFetchTotal } from "../customHooks/useFetchTotal";
 import { stateCodeMap, statesArray } from "../utils";
 import {
   CandidateData,
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export type ElectionContextType = {
+  tempTotal?: ElectionUpdate;
   data?: ElectionDataType | undefined;
   year: "2015" | "2019";
   updates: Record<string, ElectionUpdate[] | CandidateData[]> | undefined;
@@ -41,11 +43,13 @@ export const useElectionContext = () =>
 
 export const ElectionProvider = ({ children }: Props) => {
   let { data } = useFetchElectionData();
+  let { data: totalData } = useFetchTotal();
   const [futureSelectedState, setFutureSelectedState] =
     useState<SelectedLayer>();
   let { data: ElectionUpdate } = useFetchFutureElectionData();
   const [updates, setUpdates] =
     useState<Record<string, ElectionUpdate[] | CandidateData[]>>();
+  const [tempTotal, setTempTotal] = useState<ElectionUpdate>();
   const [statesPerRace, setStatesPerRace] = useState<typeof statesArray>();
   const [title, setTitle] = useState<RaceType>("president");
   const [year, setYear] = useState<"2015" | "2019">("2019");
@@ -63,6 +67,13 @@ export const ElectionProvider = ({ children }: Props) => {
   }, [year, data, title]);
 
   useEffect(() => {
+    if (totalData) {
+      console.log("this iss", totalData);
+      setTempTotal(totalData);
+    }
+  }, [year, totalData, title]);
+
+  useEffect(() => {
     if (ElectionUpdate) {
       setUpdates({
         president: ElectionUpdate["Presidential update"] as ElectionUpdate[],
@@ -77,6 +88,7 @@ export const ElectionProvider = ({ children }: Props) => {
   return (
     <ElectionContext.Provider
       value={{
+        tempTotal,
         data,
         title,
         year,

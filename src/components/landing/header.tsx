@@ -9,10 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
-const navigation = [
-  { name: "Interactive Map", to: "/map" },
-  { name: "Election Now", to: "/map/future" },
-];
+const navigation = [{ name: "Interactive Map", to: "/map" }];
 
 export default function Header() {
   return (
@@ -63,12 +60,19 @@ export default function Header() {
                       {item.name}
                     </Link>
                   ))}
+
                   <a
-                    href="https://businessday.ng/"
+                    href="https://businessday.ng/category/nigeriadecidesliveupdates/"
+                    className="font-medium text-gray-500 hover:text-gray-900"
+                  >
+                    Election Now
+                  </a>
+                  {/* <a
+                    href="https://businessday.ng/category/nigeriadecidesliveupdates/"
                     className="font-medium text-red-600 hover:text-red-500"
                   >
                     Visit Site
-                  </a>
+                  </a> */}
                 </div>
               </nav>
             </div>
@@ -112,13 +116,19 @@ export default function Header() {
                         {item.name}
                       </Link>
                     ))}
+                    <a
+                      href="https://businessday.ng/category/nigeriadecidesliveupdates/"
+                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    >
+                      Election Now
+                    </a>
                   </div>
-                  <a
-                    href="https://businessday.ng/"
+                  {/* <a
+                    href="https://businessday.ng/category/nigeriadecidesliveupdates/"
                     className="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-red-600 hover:bg-gray-100"
                   >
                     Visit Us
-                  </a>
+                  </a> */}
                 </div>
               </Popover.Panel>
             </Transition>
@@ -148,7 +158,7 @@ export default function Header() {
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
                   <a
-                    href="https://businessday.ng/"
+                    href="https://businessday.ng/category/nigeriadecidesliveupdates/"
                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-100 px-8 py-3 text-base font-medium text-red-700 hover:bg-red-200 md:py-4 md:px-10 md:text-lg"
                   >
                     Read News
